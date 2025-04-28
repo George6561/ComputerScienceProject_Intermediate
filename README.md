@@ -3,39 +3,44 @@
 ### Core Functionality
 
 #### **Game Mechanics:**
-- Interactive chessboard implemented using `ChessBoard` and `ChessWindow` classes.
-- Move generation and validation using Stockfish.
-- Game states tracked and displayed in real-time.
+- Interactive chessboard implemented using `ChessBoard`, `ChessWindow`, and `MainWindow` classes.
+- Move generation and validation using internal logic, assisted by Stockfish.
+- Game states tracked and updated automatically after every move.
 - Support for special moves:
   - Castling
+  - En passant
   - Pawn promotion
 
 #### **Stockfish Integration:**
 - Communicates with the Stockfish engine via the `StockfishConnector` class.
 - Retrieves:
-  - Optimal moves
-  - Position evaluations
-  - Legal moves
+  - Best moves
+  - Evaluation scores
+  - List of legal moves
 - Adjustable:
-  - Analysis depth
-  - Move time for flexible gameplay and analysis.
+  - Search depth
+  - Move time per turn
+  - Number of search threads for performance tuning
 
 #### **Move Storage and Analysis:**
-- Tracks move history using the `MoveStorage` class.
-- Evaluates game states and stores position scores.
+- Tracks full move history internally using `ChessGame`.
+- Sends move sequences to Stockfish for accurate position evaluation.
+- Supports dynamic engine updates during live gameplay.
 
 ---
 
 ### User Interface
 
 #### **JavaFX-Based GUI:**
-- Visual representation of the chessboard and pieces in `ChessWindow` and `MainWindow`.
-- Drag-and-drop functionality for piece movement.
-- Dynamically updates the board and provides user feedback.
+- Visual representation of the chessboard and pieces using `ChessWindow` and `MainWindow`.
+- Drag-and-drop functionality for natural piece movement.
+- Real-time board updates after moves, captures, castling, and promotions.
+- Clean and responsive user interface with custom graphics.
 
 #### **Scalable Design:**
-- Modular structure for easy extensibility.
-- Separation of concerns:
-  - Game logic (`ChessGame`)
-  - UI (`ChessWindow`)
+- Modular architecture for easy extension and maintenance.
+- Clear separation of concerns:
+  - Game logic (`ChessBoard`, `ChessGame`)
+  - UI rendering (`ChessWindow`, `MainWindow`)
   - Engine communication (`StockfishConnector`)
+- Designed for future upgrades, including stronger AI integration or advanced analysis tools.
